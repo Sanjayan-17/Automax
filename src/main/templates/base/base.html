@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset= "utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Sanjayan">
+        {% block 'title' %}
+        <title>AutoMax . List your Car Today!</title>
+        {% endblock %}
+        <link href="{% static 'css/bootstrap.min(2).css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <script
+          <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+          integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+		
+		
+    </head>
+    <body>
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class = "alert alert-{{message.tags}}" {% endif %}>
+          {{message}} -
+          {{message.tags}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block 'header' %}
+        <header class="p-3 bg-dark text-white w-100 nav-masthead">
+          <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+               <a href "{% url 'home' %}" class = "d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img class = "bi me-2" width="32" height="32" src = "{% static 'images/logo.png'%}" aria-label = "Bootstrap">
+               </a>
+               {% if request.user.is_authenticated %}
+               <ul class = "nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+                 <li>
+                  <a href = "{% url 'profile' %}" class = "nav-link px-2">Profile</a>
+                 </li>
+              </ul>
+              <div class = "text-end">
+                <a type="button" href = "{% url 'logout' %}" class = "btn btn-danger">Logout</a>
+              </div>
+               {% endif %}
+                 
+            </div>
+          </div>
+        {% endblock %}
+        {% block 'body' %}
+        
+        {% comment %} <div class="d-flex h-100 text-center text-white index">
+            <vedio autoplay muted loop id="bgVideo">
+              <source src="{% static 'videos/bg.11e51b509623.mp4' %}" type="video/mp4">
+            </vedio>
+          </div> {% endcomment %}
+        {% endblock %}
+        
+    </body>
+      {% block 'footer' %}
+        <footer class="footer text-muted bg-dark py-5">
+        <div class="container">
+            <p class="float-end mb-1">Powered by <a href="https://www.Djangoproject.com/">Django</a></p>
+            <p class="mb-1">AutoMax -Best products</p>
+        </div>
+    </footer>
+    {% endblock %}
+</html>
